@@ -6,10 +6,18 @@
     <title>Peso Certo - Atacadão Farma Centro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Poppins', system-ui, sans-serif; }
-        .hero { background: linear-gradient(135deg, #e11d48, #9f1239); }
-        .btn-red { background: #e11d48; }
-        .btn-red:hover { background: #9f1239; }
+        body { 
+            font-family: 'Poppins', system-ui, sans-serif; 
+        }
+        .hero { 
+            background: linear-gradient(135deg, #e11d48, #9f1239); 
+        }
+        .btn-red { 
+            background: #e11d48; 
+        }
+        .btn-red:hover { 
+            background: #9f1239; 
+        }
         .number-input {
             display: flex;
             align-items: center;
@@ -21,19 +29,19 @@
         .number-input input {
             flex: 1;
             text-align: center;
-            font-size: 28px;
-            font-weight: 600;
+            font-size: 29px;
+            font-weight: 700;
             background: transparent;
             border: none;
             outline: none;
         }
         .number-btn {
-            width: 48px;
-            height: 48px;
+            width: 56px;
+            height: 56px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
             color: #e11d48;
             background: white;
@@ -43,10 +51,11 @@
         }
         .number-btn:hover {
             background: #fee2e9;
+            color: #9f1239;
         }
         .logo {
-            max-height: 110px;
-            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+            max-height: 160px;           /* Aumentei bastante */
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.35));
         }
     </style>
 </head>
@@ -55,8 +64,8 @@
     <div class="hero text-white py-12 text-center">
         <div class="max-w-md mx-auto px-6">
             <div class="flex justify-center mb-4">
-                <img src="https://raw.githubusercontent.com/atacadaofarmacentro/Peso-Certo-IMC/main/imagens/atacadao.png" 
-                     alt="Atacadão Farma Centro" 
+                <img src="https://raw.githubusercontent.com/atacadaofarmacentro/Peso-Certo-IMC/main/imagens/atacadao.png"
+                     alt="Atacadão Farma Centro"
                      class="logo">
             </div>
             <h1 class="text-5xl font-bold tracking-tight">Peso Certo</h1>
@@ -67,7 +76,7 @@
 
     <div class="max-w-md mx-auto px-6 -mt-8">
         <div class="bg-white rounded-3xl shadow-2xl p-8">
-            
+           
             <!-- Altura -->
             <div class="mb-6">
                 <label class="block text-sm font-medium text-gray-600 mb-2">Altura (cm)</label>
@@ -88,7 +97,7 @@
                 </div>
             </div>
 
-            <button onclick="calcularIMC()" 
+            <button onclick="calcularIMC()"
                     class="mt-4 w-full btn-red text-white font-bold text-xl py-6 rounded-3xl flex items-center justify-center gap-3 shadow-lg">
                 💡 CALCULAR AGORA
             </button>
@@ -99,9 +108,9 @@
             <div id="imcValue" class="text-7xl font-bold text-rose-600"></div>
             <div id="status" class="text-2xl font-semibold mt-3 mb-5"></div>
             <div id="mensagem" class="text-gray-700 text-lg leading-relaxed"></div>
-
+            
             <div id="contato" class="mt-8 hidden">
-                <a onclick="abrirWhatsApp()" 
+                <a onclick="abrirWhatsApp()"
                    class="block btn-red text-white font-semibold text-xl py-6 rounded-3xl cursor-pointer shadow-lg">
                     📲 (61) 99218-6067 - Falar agora
                 </a>
@@ -111,13 +120,11 @@
     </div>
 
     <script>
-        // Função para aumentar ou diminuir os valores
         function mudarValor(id, valor) {
             const input = document.getElementById(id);
             let atual = parseFloat(input.value) || 0;
             atual += valor;
             
-            // Limites seguros
             if (id === 'altura') {
                 if (atual < 50) atual = 50;
                 if (atual > 250) atual = 250;
@@ -176,7 +183,6 @@
             window.open(`https://wa.me/${numero}?text=${texto}`, '_blank');
         }
 
-        // Permite calcular apertando Enter
         document.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') calcularIMC();
         });
