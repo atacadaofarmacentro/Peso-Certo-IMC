@@ -67,7 +67,6 @@
     <div class="hero text-white py-10 text-center">
         <div class="max-w-4xl mx-auto px-6">
             
-            <!-- Logo -->
             <div class="flex justify-center mb-6">
                 <img src="https://raw.githubusercontent.com/atacadaofarmacentro/Peso-Certo-IMC/main/imagens/atacadao.png"
                      alt="Atacadão Farma Centro"
@@ -78,10 +77,8 @@
             <p class="text-2xl mt-1 font-semibold">Atacadão Farma Centro</p>
             <p class="mt-3 text-pink-100">Descubra se seu peso está ideal e conheça nossas soluções!</p>
 
-            <!-- Botões laterais -->
             <div class="flex justify-between items-center mt-12 px-12">
                 
-                <!-- LADO ESQUERDO -->
                 <div class="flex flex-col gap-4">
                     <a href="https://atacadaofarma.base44.app/" target="_blank" class="social-btn bg-white text-red-600 hover:bg-gray-100">
                         🌐 Nova Plataforma
@@ -92,7 +89,6 @@
                     </a>
                 </div>
 
-                <!-- LADO DIREITO -->
                 <div class="flex flex-col gap-4">
                     <a href="https://wa.me/5561992186067" target="_blank" 
                        class="social-btn bg-green-500 hover:bg-green-600 text-white">
@@ -110,7 +106,6 @@
     <div class="max-w-md mx-auto px-6 -mt-10">
         <div class="bg-white rounded-3xl shadow-2xl p-8">
            
-            <!-- Altura -->
             <div class="mb-6">
                 <label class="block text-sm font-medium text-gray-600 mb-2">Altura (cm)</label>
                 <div class="number-input">
@@ -120,7 +115,6 @@
                 </div>
             </div>
 
-            <!-- Peso -->
             <div class="mb-8">
                 <label class="block text-sm font-medium text-gray-600 mb-2">Peso (kg)</label>
                 <div class="number-input">
@@ -136,7 +130,6 @@
             </button>
         </div>
 
-        <!-- RESULTADO -->
         <div id="resultado" class="hidden mt-8 bg-white rounded-3xl shadow-2xl p-8 text-center">
             <div id="imcValue" class="text-7xl font-bold text-rose-600"></div>
             <div id="status" class="text-2xl font-semibold mt-3 mb-5"></div>
@@ -153,6 +146,38 @@
     </div>
 
     <script>
+        const piadasIdeal = [
+        "Tá voando! Só não esquece de não comemorar com 3 pizzas hoje 😂",
+        "Equilíbrio perfeito! Corpo e mente em harmonia 💪",
+        "Seu IMC tá tão bom que dá até inveja saudável 😎",
+        "Continue assim... ou vai virar referência no grupo da família 😂"
+        ];
+
+        const piadasSobrepeso = [
+        "Tá quase lá! Só falta dizer não pra aquele docinho depois do almoço 😅",
+        "O shape tá vindo… devagarinho, mas tá vindo 😂",
+        "Se correr atrás já ajuda… literalmente 🏃‍♂️",
+        "Não é sobre cortar tudo… é sobre escolher melhor 👀"
+        ];
+
+        const piadasObesidade = [
+        "Calma, isso aqui é só um ponto de partida — bora mudar esse jogo 💪",
+        "O importante não é como tá hoje, é o que você faz a partir de agora 🔥",
+        "Seu corpo tá pedindo ajuda… e a gente tá aqui pra isso 🤝",
+        "Cada pequena mudança já é um passo gigante 🚀"
+        ];
+
+        const piadasAbaixo = [
+        "Tá leve demais… até o vento leva 😂",
+        "Bora colocar um pouco mais de sustância nesse shape 💪",
+        "Hora de fortalecer esse corpo aí 🍗🔥",
+        "Magro sim, fraco não — bora ganhar massa 😎"
+        ];
+
+        function pegarMensagemAleatoria(lista) {
+            return lista[Math.floor(Math.random() * lista.length)];
+        }
+
         function mudarValor(id, valor) {
             const input = document.getElementById(id);
             let atual = parseFloat(input.value) || 0;
@@ -191,19 +216,19 @@
 
             if (imc < 18.5) {
                 status.innerHTML = '<span class="text-orange-600">🟠 Abaixo do peso</span>';
-                mensagem.innerHTML = 'Seu peso está abaixo do ideal.<br><strong>Quer ganhar massa saudável?</strong>';
+                mensagem.innerHTML = 'Seu peso está abaixo do ideal.<br><strong>Quer ganhar massa saudável?</strong><br>' + pegarMensagemAleatoria(piadasAbaixo);
                 contato.classList.remove('hidden');
             } else if (imc <= 24.9) {
                 status.innerHTML = '<span class="text-emerald-600">🟢 Peso ideal!</span>';
-                mensagem.innerHTML = 'Parabéns! Seu peso está perfeito.<br>Continue assim 💪';
+                mensagem.innerHTML = 'Parabéns! Seu peso está perfeito.<br>Continue assim 💪<br>' + pegarMensagemAleatoria(piadasIdeal);
                 contato.classList.add('hidden');
             } else if (imc <= 29.9) {
                 status.innerHTML = '<span class="text-amber-600">🟡 Sobrepeso</span>';
-                mensagem.innerHTML = 'Seu peso está um pouco acima.<br><strong>Quer emagrecer com saúde?</strong>';
+                mensagem.innerHTML = 'Seu peso está um pouco acima.<br><strong>Quer emagrecer com saúde?</strong><br>' + pegarMensagemAleatoria(piadasSobrepeso);
                 contato.classList.remove('hidden');
             } else {
                 status.innerHTML = '<span class="text-red-600">🔴 Obesidade</span>';
-                mensagem.innerHTML = 'Seu IMC indica obesidade.<br><strong>Vamos te ajudar a emagrecer com segurança!</strong>';
+                mensagem.innerHTML = 'Seu IMC indica obesidade.<br><strong>Vamos te ajudar a emagrecer com segurança!</strong><br>' + pegarMensagemAleatoria(piadasObesidade);
                 contato.classList.remove('hidden');
             }
         }
