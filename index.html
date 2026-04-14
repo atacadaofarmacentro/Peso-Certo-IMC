@@ -18,6 +18,15 @@
         .btn-red:hover { 
             background: #9f1239; 
         }
+        .social-btn {
+            padding: 12px 24px;
+            border-radius: 9999px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
         .number-input {
             display: flex;
             align-items: center;
@@ -54,23 +63,37 @@
             color: #9f1239;
         }
         .logo {
-            max-height: 160px;           /* Aumentei bastante */
+            max-height: 145px;
             filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.35));
         }
     </style>
 </head>
 <body class="bg-gray-50">
 
-    <div class="hero text-white py-12 text-center">
+    <div class="hero text-white py-10 text-center">
         <div class="max-w-md mx-auto px-6">
-            <div class="flex justify-center mb-4">
+            <!-- Logo -->
+            <div class="flex justify-center mb-6">
                 <img src="https://raw.githubusercontent.com/atacadaofarmacentro/Peso-Certo-IMC/main/imagens/atacadao.png"
                      alt="Atacadão Farma Centro"
                      class="logo">
             </div>
+
             <h1 class="text-5xl font-bold tracking-tight">Peso Certo</h1>
             <p class="text-2xl mt-1 font-semibold">Atacadão Farma Centro</p>
-            <p class="mt-4 text-pink-100">Descubra se seu peso está ideal e conheça nossas soluções!</p>
+            <p class="mt-3 text-pink-100">Descubra se seu peso está ideal e conheça nossas soluções!</p>
+
+            <!-- Botões de redes sociais -->
+            <div class="flex flex-wrap justify-center gap-4 mt-8">
+                <a href="https://wa.me/5561992186067" target="_blank"
+                   class="social-btn bg-green-500 hover:bg-green-600 text-white">
+                    📲 WhatsApp
+                </a>
+                <a href="#" target="_blank" id="instagram-btn"
+                   class="social-btn bg-gradient-to-r from-pink-500 to-purple-500 hover:brightness-110 text-white">
+                    📸 Instagram
+                </a>
+            </div>
         </div>
     </div>
 
@@ -182,6 +205,9 @@
             const texto = encodeURIComponent("Olá! Usei o app Peso Certo do Atacadão Farma Centro e quero saber mais sobre as opções.");
             window.open(`https://wa.me/${numero}?text=${texto}`, '_blank');
         }
+
+        // Link do Instagram - TROQUE AQUI pelo seu @ real
+        document.getElementById('instagram-btn').href = "https://www.instagram.com/SEU_INSTAGRAM_AQUI/";
 
         document.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') calcularIMC();
