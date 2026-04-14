@@ -16,18 +16,22 @@
         .btn-red:hover {
             background: #9f1239;
         }
+        .logo-img {
+            max-height: 110px;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+        }
     </style>
 </head>
 <body class="bg-gray-50">
 
     <!-- Cabeçalho Vermelho -->
-    <div class="hero text-white py-10 text-center">
+    <div class="hero text-white py-12 text-center">
         <div class="max-w-md mx-auto px-6">
+            <!-- Logo carregada direto do seu GitHub -->
             <div class="flex justify-center mb-4">
-                <!-- Logo que você enviou (coração vermelho) -->
-                <img src="https://i.ibb.co/0jZfZfK/atacadao-farma-centro-logo.png" 
+                <img src="https://atacadaofarmacentro.github.io/Peso-Certo-IMC/imagens/atacadao-farma-centro-logo.png" 
                      alt="Atacadão Farma Centro" 
-                     class="h-20 drop-shadow-lg">
+                     class="logo-img">
             </div>
             <h1 class="text-4xl font-bold tracking-tight">Peso Certo</h1>
             <p class="text-2xl mt-1 font-semibold">Atacadão Farma Centro</p>
@@ -126,12 +130,11 @@
         }
 
         function abrirWhatsApp() {
-            const numero = "5561992186067";   // Número correto para WhatsApp
-            const texto = encodeURIComponent("Olá! Usei o app Peso Certo do Atacadão Farma Centro e meu peso não está ideal. Quero saber mais sobre as opções de emagrecimento ou ganho de peso.");
+            const numero = "5561992186067";
+            const texto = encodeURIComponent("Olá! Usei o app Peso Certo do Atacadão Farma Centro e meu peso não está ideal. Quero saber mais sobre as opções.");
             window.open(`https://wa.me/${numero}?text=${texto}`, '_blank');
         }
 
-        // Calcular ao pressionar Enter
         document.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') calcularIMC();
         });
