@@ -16,33 +16,34 @@
         .btn-red:hover {
             background: #9f1239;
         }
-        .logo-img {
-            max-height: 120px;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.25));
-        }
     </style>
 </head>
 <body class="bg-gray-50">
 
     <div class="hero text-white py-12 text-center">
         <div class="max-w-md mx-auto px-6">
-            <!-- LOGO - Tentei os caminhos mais comuns -->
+            <!-- Logo com fallback (mostra texto bonito enquanto não carrega) -->
             <div class="flex justify-center mb-4">
-                <img id="logo" 
+                <img id="logoImg" 
                      src="https://raw.githubusercontent.com/atacadaofarmacentro/Peso-Certo-IMC/main/imagens/atacadao-farma-centro-logo.png"
                      alt="Atacadão Farma Centro" 
-                     class="logo-img"
-                     onerror="this.src='https://raw.githubusercontent.com/atacadaofarmacentro/Peso-Certo-IMC/main/images/atacadao-farma-centro-logo.png'; this.onerror=null;">
+                     class="max-h-28 drop-shadow-lg"
+                     onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='block';">
+                
+                <!-- Fallback caso a imagem não carregue -->
+                <div id="logoFallback" class="hidden flex items-center gap-3 text-4xl font-bold">
+                    ❤️ <span>Atacadão Farma Centro</span>
+                </div>
             </div>
-            <h1 class="text-4xl font-bold tracking-tight">Peso Certo</h1>
-            <p class="text-2xl mt-1 font-semibold">Atacadão Farma Centro</p>
-            <p class="mt-3 text-pink-100">Descubra se seu peso está ideal e conheça nossas soluções!</p>
+
+            <h1 class="text-5xl font-bold tracking-tight">Peso Certo</h1>
+            <p class="text-2xl mt-2">Atacadão Farma Centro</p>
+            <p class="mt-4 text-pink-100 text-lg">Descubra se seu peso está ideal e conheça nossas soluções!</p>
         </div>
     </div>
 
     <div class="max-w-md mx-auto px-6 -mt-8">
         <div class="bg-white rounded-3xl shadow-2xl p-8">
-            
             <div class="grid grid-cols-2 gap-6">
                 <div>
                     <label class="block text-sm font-medium text-gray-600 mb-1">Altura (cm)</label>
@@ -86,12 +87,12 @@
     </div>
 
     <script>
-        function calcularIMC() { /* mesmo código de antes */ 
+        function calcularIMC() {
             const alturaCm = parseFloat(document.getElementById('altura').value);
             const pesoKg = parseFloat(document.getElementById('peso').value);
             
             if (!alturaCm || !pesoKg || alturaCm < 50 || pesoKg < 2) {
-                alert("⚠️ Preencha altura (cm) e peso corretamente.\nEx: 170 e 70");
+                alert("⚠️ Preencha altura (cm) e peso corretamente.\nExemplo: 170 e 70");
                 return;
             }
 
@@ -129,7 +130,7 @@
 
         function abrirWhatsApp() {
             const numero = "5561992186067";
-            const texto = encodeURIComponent("Olá! Usei o Peso Certo e quero saber mais sobre emagrecimento ou ganho de peso.");
+            const texto = encodeURIComponent("Olá! Usei o app Peso Certo e quero saber mais sobre as opções de emagrecimento ou ganho de peso.");
             window.open(`https://wa.me/${numero}?text=${texto}`, '_blank');
         }
 
