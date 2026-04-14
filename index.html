@@ -9,7 +9,6 @@
         body { font-family: 'Poppins', system-ui, sans-serif; }
         .hero { 
             background: linear-gradient(135deg, #e11d48, #9f1239); 
-            min-height: 380px;
         }
         .social-btn {
             padding: 14px 26px;
@@ -20,8 +19,42 @@
             align-items: center;
             gap: 10px;
             transition: all 0.3s;
-            white-space: nowrap;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .number-input {
+            display: flex;
+            align-items: center;
+            background: #f3f4f6;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .number-input input {
+            flex: 1;
+            text-align: center;
+            font-size: 29px;
+            font-weight: 700;
+            background: transparent;
+            border: none;
+            outline: none;
+        }
+        .number-btn {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #e11d48;
+            background: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .number-btn:hover {
+            background: #fee2e9;
+            color: #9f1239;
         }
         .logo {
             max-height: 135px;
@@ -31,10 +64,10 @@
 </head>
 <body class="bg-gray-50">
 
-    <div class="hero text-white py-10 text-center relative">
+    <div class="hero text-white py-10 text-center">
         <div class="max-w-4xl mx-auto px-6">
             
-            <!-- Logo central -->
+            <!-- Logo -->
             <div class="flex justify-center mb-6">
                 <img src="https://raw.githubusercontent.com/atacadaofarmacentro/Peso-Certo-IMC/main/imagens/atacadao.png"
                      alt="Atacadão Farma Centro"
@@ -45,10 +78,10 @@
             <p class="text-2xl mt-1 font-semibold">Atacadão Farma Centro</p>
             <p class="mt-3 text-pink-100">Descubra se seu peso está ideal e conheça nossas soluções!</p>
 
-            <!-- Área dos 4 botões laterais -->
-            <div class="flex justify-between items-center mt-12 px-8">
+            <!-- Botões laterais -->
+            <div class="flex justify-between items-center mt-12 px-12">
                 
-                <!-- LADO ESQUERDO - 2 botões -->
+                <!-- LADO ESQUERDO -->
                 <div class="flex flex-col gap-4">
                     <a href="#" target="_blank" class="social-btn bg-white text-red-600 hover:bg-gray-100">
                         🌐 Nova Plataforma
@@ -58,7 +91,7 @@
                     </a>
                 </div>
 
-                <!-- LADO DIREITO - 2 botões -->
+                <!-- LADO DIREITO -->
                 <div class="flex flex-col gap-4">
                     <a href="https://wa.me/5561992186067" target="_blank" 
                        class="social-btn bg-green-500 hover:bg-green-600 text-white">
@@ -73,7 +106,7 @@
         </div>
     </div>
 
-    <div class="max-w-md mx-auto px-6 -mt-8">
+    <div class="max-w-md mx-auto px-6 -mt-10">
         <div class="bg-white rounded-3xl shadow-2xl p-8">
            
             <!-- Altura -->
@@ -97,19 +130,20 @@
             </div>
 
             <button onclick="calcularIMC()"
-                    class="mt-4 w-full btn-red text-white font-bold text-xl py-6 rounded-3xl flex items-center justify-center gap-3 shadow-lg">
+                    class="mt-4 w-full bg-[#e11d48] hover:bg-[#9f1239] text-white font-bold text-xl py-6 rounded-3xl flex items-center justify-center gap-3 shadow-lg">
                 💡 CALCULAR AGORA
             </button>
         </div>
 
-        <!-- RESULTADO (mantido igual) -->
+        <!-- RESULTADO -->
         <div id="resultado" class="hidden mt-8 bg-white rounded-3xl shadow-2xl p-8 text-center">
             <div id="imcValue" class="text-7xl font-bold text-rose-600"></div>
             <div id="status" class="text-2xl font-semibold mt-3 mb-5"></div>
             <div id="mensagem" class="text-gray-700 text-lg leading-relaxed"></div>
             
             <div id="contato" class="mt-8 hidden">
-                <a onclick="abrirWhatsApp()" class="block btn-red text-white font-semibold text-xl py-6 rounded-3xl cursor-pointer shadow-lg">
+                <a onclick="abrirWhatsApp()" 
+                   class="block bg-[#e11d48] hover:bg-[#9f1239] text-white font-semibold text-xl py-6 rounded-3xl cursor-pointer shadow-lg">
                     📲 (61) 99218-6067 - Falar agora
                 </a>
                 <p class="text-xs text-gray-500 mt-4">Temos opções para emagrecer e engordar com qualidade!</p>
@@ -118,11 +152,11 @@
     </div>
 
     <script>
-        // Funções do cálculo (mantidas iguais)
         function mudarValor(id, valor) {
             const input = document.getElementById(id);
             let atual = parseFloat(input.value) || 0;
             atual += valor;
+            
             if (id === 'altura') {
                 if (atual < 50) atual = 50;
                 if (atual > 250) atual = 250;
@@ -179,9 +213,6 @@
             const texto = encodeURIComponent("Olá! Usei o app Peso Certo do Atacadão Farma Centro e quero saber mais sobre as opções.");
             window.open(`https://wa.me/${numero}?text=${texto}`, '_blank');
         }
-
-        // Troque pelo seu Instagram real
-        // document.getElementById('instagram-link').href = "https://www.instagram.com/SEU_INSTAGRAM_AQUI/";
 
         document.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') calcularIMC();
