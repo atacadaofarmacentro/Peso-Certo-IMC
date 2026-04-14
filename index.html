@@ -7,31 +7,43 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Poppins', system-ui, sans-serif; }
-        .hero { background: linear-gradient(135deg, #10b981, #059669); }
+        .hero { 
+            background: linear-gradient(135deg, #e11d48, #9f1239); 
+        }
+        .btn-red {
+            background: #e11d48;
+        }
+        .btn-red:hover {
+            background: #9f1239;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
 
+    <!-- Cabeçalho Vermelho -->
     <div class="hero text-white py-10 text-center">
         <div class="max-w-md mx-auto px-6">
-            <div class="flex justify-center mb-3">
-                <div class="bg-white text-4xl w-16 h-16 rounded-2xl flex items-center justify-center shadow">⚖️</div>
+            <div class="flex justify-center mb-4">
+                <!-- Logo que você enviou (coração vermelho) -->
+                <img src="https://i.ibb.co/0jZfZfK/atacadao-farma-centro-logo.png" 
+                     alt="Atacadão Farma Centro" 
+                     class="h-20 drop-shadow-lg">
             </div>
-            <h1 class="text-4xl font-bold">Peso Certo</h1>
-            <p class="text-xl mt-1">Atacadão Farma Centro</p>
-            <p class="mt-3 text-emerald-100">Descubra se seu peso está ideal e conheça nossas soluções!</p>
+            <h1 class="text-4xl font-bold tracking-tight">Peso Certo</h1>
+            <p class="text-2xl mt-1 font-semibold">Atacadão Farma Centro</p>
+            <p class="mt-3 text-pink-100">Descubra se seu peso está ideal e conheça nossas soluções!</p>
         </div>
     </div>
 
-    <div class="max-w-md mx-auto px-6 -mt-6">
-        <div class="bg-white rounded-3xl shadow-xl p-8">
+    <div class="max-w-md mx-auto px-6 -mt-8">
+        <div class="bg-white rounded-3xl shadow-2xl p-8">
             
             <div class="grid grid-cols-2 gap-6">
                 <div>
                     <label class="block text-sm font-medium text-gray-600 mb-1">Altura (cm)</label>
                     <div class="relative">
                         <input type="number" id="altura" placeholder="170" 
-                               class="w-full bg-gray-100 border border-gray-300 focus:border-emerald-500 rounded-2xl px-5 py-6 text-3xl font-semibold text-center outline-none">
+                               class="w-full bg-gray-100 border-2 border-gray-200 focus:border-rose-500 rounded-2xl px-5 py-6 text-3xl font-semibold text-center outline-none transition-all">
                         <span class="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400">cm</span>
                     </div>
                 </div>
@@ -40,28 +52,28 @@
                     <label class="block text-sm font-medium text-gray-600 mb-1">Peso (kg)</label>
                     <div class="relative">
                         <input type="number" id="peso" placeholder="70" step="0.1"
-                               class="w-full bg-gray-100 border border-gray-300 focus:border-emerald-500 rounded-2xl px-5 py-6 text-3xl font-semibold text-center outline-none">
+                               class="w-full bg-gray-100 border-2 border-gray-200 focus:border-rose-500 rounded-2xl px-5 py-6 text-3xl font-semibold text-center outline-none transition-all">
                         <span class="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400">kg</span>
                     </div>
                 </div>
             </div>
 
             <button onclick="calcularIMC()" 
-                    class="mt-8 w-full bg-emerald-600 hover:bg-emerald-700 transition-all text-white font-bold text-xl py-6 rounded-3xl flex items-center justify-center gap-2 shadow-lg">
-                <span>💡 CALCULAR AGORA</span>
+                    class="mt-8 w-full btn-red hover:brightness-110 transition-all text-white font-bold text-xl py-6 rounded-3xl flex items-center justify-center gap-3 shadow-lg">
+                💡 CALCULAR AGORA
             </button>
         </div>
 
         <!-- RESULTADO -->
-        <div id="resultado" class="hidden mt-8 bg-white rounded-3xl shadow-xl p-8 text-center">
-            <div id="imcValue" class="text-7xl font-bold text-emerald-600"></div>
-            <div id="status" class="text-2xl font-semibold mt-2 mb-4"></div>
-            <div id="mensagem" class="text-gray-700 leading-relaxed"></div>
+        <div id="resultado" class="hidden mt-8 bg-white rounded-3xl shadow-2xl p-8 text-center">
+            <div id="imcValue" class="text-7xl font-bold text-rose-600"></div>
+            <div id="status" class="text-2xl font-semibold mt-3 mb-5"></div>
+            <div id="mensagem" class="text-gray-700 text-lg leading-relaxed"></div>
 
             <div id="contato" class="mt-8 hidden">
                 <a onclick="abrirWhatsApp()" 
-                   class="block bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-lg py-5 rounded-3xl cursor-pointer transition-all">
-                    📲 Falar com Atacadão Farma Centro
+                   class="block btn-red text-white font-semibold text-xl py-6 rounded-3xl cursor-pointer transition-all shadow-lg hover:brightness-110">
+                    📲 (61) 99218-6067 - Falar agora
                 </a>
                 <p class="text-xs text-gray-500 mt-4">Temos opções para emagrecer e engordar com qualidade!</p>
             </div>
@@ -92,34 +104,34 @@
             const contato = document.getElementById('contato');
 
             if (imc < 18.5) {
-                status.innerHTML = '🟠 Abaixo do peso';
-                mensagem.innerHTML = 'Seu peso está abaixo do ideal.<br><strong>Quer ganhar massa de forma saudável?</strong>';
+                status.innerHTML = '<span class="text-orange-600">🟠 Abaixo do peso</span>';
+                mensagem.innerHTML = 'Seu peso está abaixo do ideal.<br><strong>Quer ganhar massa saudável?</strong>';
                 contato.classList.remove('hidden');
             } 
             else if (imc <= 24.9) {
-                status.innerHTML = '🟢 Peso ideal!';
+                status.innerHTML = '<span class="text-emerald-600">🟢 Peso ideal!</span>';
                 mensagem.innerHTML = 'Parabéns! Seu peso está perfeito.<br>Continue assim 💪';
                 contato.classList.add('hidden');
             } 
             else if (imc <= 29.9) {
-                status.innerHTML = '🟡 Sobrepeso';
+                status.innerHTML = '<span class="text-amber-600">🟡 Sobrepeso</span>';
                 mensagem.innerHTML = 'Seu peso está um pouco acima.<br><strong>Quer emagrecer com saúde?</strong>';
                 contato.classList.remove('hidden');
             } 
             else {
-                status.innerHTML = '🔴 Obesidade';
+                status.innerHTML = '<span class="text-red-600">🔴 Obesidade</span>';
                 mensagem.innerHTML = 'Seu IMC indica obesidade.<br><strong>Vamos te ajudar a emagrecer com segurança!</strong>';
                 contato.classList.remove('hidden');
             }
         }
 
         function abrirWhatsApp() {
-            const numero = "SEU_NUMERO_AQUI"; // ← Troque pelo seu WhatsApp com DDD (ex: 5561998765432)
-            const texto = encodeURIComponent("Olá! Usei o app Peso Certo e meu IMC não está ideal. Quero saber as opções de emagrecimento ou ganho de peso.");
+            const numero = "5561992186067";   // Número correto para WhatsApp
+            const texto = encodeURIComponent("Olá! Usei o app Peso Certo do Atacadão Farma Centro e meu peso não está ideal. Quero saber mais sobre as opções de emagrecimento ou ganho de peso.");
             window.open(`https://wa.me/${numero}?text=${texto}`, '_blank');
         }
 
-        // Pressionar Enter calcula
+        // Calcular ao pressionar Enter
         document.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') calcularIMC();
         });
