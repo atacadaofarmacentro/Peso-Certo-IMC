@@ -6,17 +6,43 @@
     <title>Peso Certo - Atacadão Farma Centro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { 
-            font-family: 'Poppins', system-ui, sans-serif; 
+        body { font-family: 'Poppins', system-ui, sans-serif; }
+        .hero { background: linear-gradient(135deg, #e11d48, #9f1239); }
+        .btn-red { background: #e11d48; }
+        .btn-red:hover { background: #9f1239; }
+        .number-input {
+            display: flex;
+            align-items: center;
+            background: #f3f4f6;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            overflow: hidden;
         }
-        .hero { 
-            background: linear-gradient(135deg, #e11d48, #9f1239); 
+        .number-input input {
+            flex: 1;
+            text-align: center;
+            font-size: 28px;
+            font-weight: 600;
+            background: transparent;
+            border: none;
+            outline: none;
         }
-        .btn-red {
-            background: #e11d48;
+        .number-btn {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #e11d48;
+            background: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
         }
-        .btn-red:hover {
-            background: #9f1239;
+        .number-btn:hover {
+            background: #fee2e9;
         }
         .logo {
             max-height: 110px;
@@ -28,14 +54,11 @@
 
     <div class="hero text-white py-12 text-center">
         <div class="max-w-md mx-auto px-6">
-            <!-- Logo correta do seu GitHub -->
             <div class="flex justify-center mb-4">
                 <img src="https://raw.githubusercontent.com/atacadaofarmacentro/Peso-Certo-IMC/main/imagens/atacadao.png" 
                      alt="Atacadão Farma Centro" 
-                     class="logo"
-                     onerror="this.src='https://via.placeholder.com/300x120/ffffff/000000?text=Atacad%C3%A3o+Farma+Centro';">
+                     class="logo">
             </div>
-
             <h1 class="text-5xl font-bold tracking-tight">Peso Certo</h1>
             <p class="text-2xl mt-1 font-semibold">Atacadão Farma Centro</p>
             <p class="mt-4 text-pink-100">Descubra se seu peso está ideal e conheça nossas soluções!</p>
@@ -45,28 +68,28 @@
     <div class="max-w-md mx-auto px-6 -mt-8">
         <div class="bg-white rounded-3xl shadow-2xl p-8">
             
-            <div class="grid grid-cols-2 gap-6">
-                <div>
-                    <label class="block text-sm font-medium text-gray-600 mb-1">Altura (cm)</label>
-                    <div class="relative">
-                        <input type="number" id="altura" placeholder="170" 
-                               class="w-full bg-gray-100 border-2 border-gray-200 focus:border-rose-500 rounded-2xl px-5 py-6 text-3xl font-semibold text-center outline-none">
-                        <span class="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400">cm</span>
-                    </div>
+            <!-- Altura -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-600 mb-2">Altura (cm)</label>
+                <div class="number-input">
+                    <button onclick="mudarValor('altura', -1)" class="number-btn">-</button>
+                    <input type="number" id="altura" value="170" min="50" max="250">
+                    <button onclick="mudarValor('altura', 1)" class="number-btn">+</button>
                 </div>
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-600 mb-1">Peso (kg)</label>
-                    <div class="relative">
-                        <input type="number" id="peso" placeholder="70" step="0.1"
-                               class="w-full bg-gray-100 border-2 border-gray-200 focus:border-rose-500 rounded-2xl px-5 py-6 text-3xl font-semibold text-center outline-none">
-                        <span class="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400">kg</span>
-                    </div>
+            </div>
+
+            <!-- Peso -->
+            <div class="mb-8">
+                <label class="block text-sm font-medium text-gray-600 mb-2">Peso (kg)</label>
+                <div class="number-input">
+                    <button onclick="mudarValor('peso', -0.5)" class="number-btn">-</button>
+                    <input type="number" id="peso" value="70" min="2" max="300" step="0.1">
+                    <button onclick="mudarValor('peso', 0.5)" class="number-btn">+</button>
                 </div>
             </div>
 
             <button onclick="calcularIMC()" 
-                    class="mt-8 w-full btn-red text-white font-bold text-xl py-6 rounded-3xl flex items-center justify-center gap-3 shadow-lg">
+                    class="mt-4 w-full btn-red text-white font-bold text-xl py-6 rounded-3xl flex items-center justify-center gap-3 shadow-lg">
                 💡 CALCULAR AGORA
             </button>
         </div>
@@ -88,12 +111,30 @@
     </div>
 
     <script>
+        // Função para aumentar ou diminuir os valores
+        function mudarValor(id, valor) {
+            const input = document.getElementById(id);
+            let atual = parseFloat(input.value) || 0;
+            atual += valor;
+            
+            // Limites seguros
+            if (id === 'altura') {
+                if (atual < 50) atual = 50;
+                if (atual > 250) atual = 250;
+            } else if (id === 'peso') {
+                if (atual < 2) atual = 2;
+                if (atual > 300) atual = 300;
+            }
+            
+            input.value = atual;
+        }
+
         function calcularIMC() {
             const alturaCm = parseFloat(document.getElementById('altura').value);
             const pesoKg = parseFloat(document.getElementById('peso').value);
             
             if (!alturaCm || !pesoKg || alturaCm < 50 || pesoKg < 2) {
-                alert("⚠️ Preencha altura (cm) e peso corretamente.\nExemplo: 170 e 70");
+                alert("⚠️ Preencha altura e peso corretamente.");
                 return;
             }
 
@@ -135,6 +176,7 @@
             window.open(`https://wa.me/${numero}?text=${texto}`, '_blank');
         }
 
+        // Permite calcular apertando Enter
         document.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') calcularIMC();
         });
