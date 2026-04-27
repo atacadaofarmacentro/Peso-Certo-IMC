@@ -77,28 +77,22 @@
             <p class="text-2xl mt-1 font-semibold">Atacadão Farma Centro</p>
             <p class="mt-3 text-pink-100">Descubra se seu peso está ideal e conheça nossas soluções!</p>
 
-            <div class="flex justify-between items-center mt-12 px-12">
-                
-                <div class="flex flex-col gap-4">
-                    <a href="https://atacadaofarma.base44.app/" target="_blank" class="social-btn bg-white text-red-600 hover:bg-gray-100">
-                        🌐 Nova Plataforma
-                    </a>
-                    <a href="https://atacadaofarmacentro.github.io/Blog_AtacadaoFarmaCentro/" target="_blank" 
-                       class="social-btn bg-white text-red-600 hover:bg-gray-100">
-                        📝 Blog
-                    </a>
-                </div>
-
-                <div class="flex flex-col gap-4">
-                    <a href="https://wa.me/5561992186067" target="_blank" 
-                       class="social-btn bg-green-500 hover:bg-green-600 text-white">
-                        📲 WhatsApp
-                    </a>
-                    <a href="https://www.instagram.com/farmacentro061/" target="_blank" 
-                       class="social-btn bg-gradient-to-r from-pink-500 to-purple-600 hover:brightness-110 text-white">
-                        📸 Instagram
-                    </a>
-                </div>
+            <div class="flex flex-wrap justify-center gap-4 mt-12 px-6">
+                <a href="https://atacadaofarma.base44.app/" target="_blank" class="social-btn bg-white text-red-600 hover:bg-gray-100">
+                    🌐 Nova Plataforma
+                </a>
+                <a href="https://atacadaofarmacentro.github.io/Blog_AtacadaoFarmaCentro/" target="_blank" 
+                   class="social-btn bg-white text-red-600 hover:bg-gray-100">
+                    📝 Blog
+                </a>
+                <a href="https://wa.me/5561992186067" target="_blank" 
+                   class="social-btn bg-green-500 hover:bg-green-600 text-white">
+                    📲 WhatsApp
+                </a>
+                <a href="https://www.instagram.com/farmacentro061/" target="_blank" 
+                   class="social-btn bg-gradient-to-r from-pink-500 to-purple-600 hover:brightness-110 text-white">
+                    📸 Instagram
+                </a>
             </div>
         </div>
     </div>
@@ -136,10 +130,10 @@
             <div id="mensagem" class="text-gray-700 text-lg leading-relaxed"></div>
             
             <div id="contato" class="mt-8 hidden">
-                <a onclick="abrirWhatsApp()" 
-                   class="block bg-[#e11d48] hover:bg-[#9f1239] text-white font-semibold text-xl py-6 rounded-3xl cursor-pointer shadow-lg">
+                <button onclick="abrirWhatsApp()" 
+                   class="w-full block bg-[#e11d48] hover:bg-[#9f1239] text-white font-semibold text-xl py-6 rounded-3xl cursor-pointer shadow-lg">
                     📲 (61) 99218-6067 - Falar agora
-                </a>
+                </button>
                 <p class="text-xs text-gray-500 mt-4">Temos opções para emagrecer e engordar com qualidade!</p>
             </div>
         </div>
@@ -147,31 +141,27 @@
 
     <script>
         const piadasIdeal = [
-        "Tá voando! Só não esquece de não comemorar com 3 pizzas hoje 😂",
-        "Equilíbrio perfeito! Corpo e mente em harmonia 💪",
-        "Seu IMC tá tão bom que dá até inveja saudável 😎",
-        "Continue assim... ou vai virar referência no grupo da família 😂"
+            "Tá voando! Só não esquece de não comemorar com 3 pizzas hoje 😂",
+            "Equilíbrio perfeito! Corpo e mente em harmonia 💪",
+            "Seu IMC tá tão bom que dá até inveja saudável 😎"
         ];
 
         const piadasSobrepeso = [
-        "Tá quase lá! Só falta dizer não pra aquele docinho depois do almoço 😅",
-        "O shape tá vindo… devagarinho, mas tá vindo 😂",
-        "Se correr atrás já ajuda… literalmente 🏃‍♂️",
-        "Não é sobre cortar tudo… é sobre escolher melhor 👀"
+            "Tá quase lá! Só falta dizer não pra aquele docinho depois do almoço 😅",
+            "O shape tá vindo… devagarinho, mas tá vindo 😂",
+            "Não é sobre cortar tudo… é sobre escolher melhor 👀"
         ];
 
         const piadasObesidade = [
-        "Calma, isso aqui é só um ponto de partida — bora mudar esse jogo 💪",
-        "O importante não é como tá hoje, é o que você faz a partir de agora 🔥",
-        "Seu corpo tá pedindo ajuda… e a gente tá aqui pra isso 🤝",
-        "Cada pequena mudança já é um passo gigante 🚀"
+            "Calma, isso aqui é só um ponto de partida — bora mudar esse jogo 💪",
+            "O importante não é como tá hoje, é o que você faz a partir de agora 🔥",
+            "Seu corpo tá pedindo ajuda… e a gente tá aqui pra isso 🤝"
         ];
 
         const piadasAbaixo = [
-        "Tá leve demais… até o vento leva 😂",
-        "Bora colocar um pouco mais de sustância nesse shape 💪",
-        "Hora de fortalecer esse corpo aí 🍗🔥",
-        "Magro sim, fraco não — bora ganhar massa 😎"
+            "Tá leve demais… até o vento leva 😂",
+            "Bora colocar um pouco mais de sustância nesse shape 💪",
+            "Magro sim, fraco não — bora ganhar massa 😎"
         ];
 
         function pegarMensagemAleatoria(lista) {
@@ -189,7 +179,7 @@
                 if (atual < 2) atual = 2;
                 if (atual > 300) atual = 300;
             }
-            input.value = atual;
+            input.value = atual.toFixed(id === 'peso' ? 1 : 0);
         }
 
         function calcularIMC() {
@@ -235,8 +225,17 @@
 
         function abrirWhatsApp() {
             const numero = "5561992186067";
-            const texto = encodeURIComponent("Olá! Usei o app Peso Certo do Atacadão Farma Centro e quero saber mais sobre as opções.");
-            window.open(`https://wa.me/${numero}?text=${texto}`, '_blank');
+            const imc = document.getElementById('imcValue').textContent;
+            const statusText = document.getElementById('status').innerText;
+            
+            const msg = `Olá! Usei o app Peso Certo do Atacadão Farma Centro.\n\n` +
+                        `📊 *Meu Resultado:* \n` +
+                        `- IMC: ${imc}\n` +
+                        `- Classificação: ${statusText}\n\n` +
+                        `Quero saber quais produtos são ideais para o meu caso!`;
+
+            const textoURL = encodeURIComponent(msg);
+            window.open(`https://wa.me/${numero}?text=${textoURL}`, '_blank');
         }
 
         document.addEventListener('keypress', (e) => {
